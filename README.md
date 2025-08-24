@@ -36,6 +36,8 @@
 - Windows 10、11
 - Web(Sqlite3实验性支持)
 
+> [SQLite](https://www.sqlite.org/index.html)
+
 ### 开发工具
 
 - AndroidStudio

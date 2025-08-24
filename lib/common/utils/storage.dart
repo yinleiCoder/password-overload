@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Platform-specific persistent storage for simple data
 class StorageHelper {
+  StorageHelper._internal();
   static final StorageHelper _instance = StorageHelper._internal();
   static late SharedPreferencesAsync _asyncPrefs;
 
@@ -9,7 +10,6 @@ class StorageHelper {
     return _instance;
   }
 
-  StorageHelper._internal();
 
   Future<void> init() async {
     _asyncPrefs = SharedPreferencesAsync();

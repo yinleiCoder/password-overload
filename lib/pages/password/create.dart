@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:password_overload/common/entity/entity.dart';
 import 'package:password_overload/common/widgets/widgets.dart';
+import 'package:password_overload/global.dart';
 
 class PasswordCreatePage extends StatefulWidget {
   const PasswordCreatePage({super.key});
@@ -46,8 +48,25 @@ class _PasswordCreatePageState extends State<PasswordCreatePage> {
         ),),
         actions: [
           IconButton(
-            onPressed: () {
-              context.pop();
+            onPressed: () async {
+              if(sourceTextController.text.isNotEmpty &&
+                  accountTextController.text.isNotEmpty &&
+                  passwordTextController.text.isNotEmpty) {
+
+                PasswordItem item = await Global.databaseHelper.insert(PasswordItem(
+                  source: sourceTextController.text,
+                  account: accountTextController.text,
+                  password: passwordTextController.text,
+                  note: noteTextController.text,
+                ));
+
+                showSnackbar(
+                  content: Text('id: ${item.id} 的数据已插入至数据库.'),
+                  context: context,
+                );
+
+                context.pop(true);// 已经插入数据了，返回上个界面时应刷新
+              }
             },
             tooltip: '加密保存数据库',
             icon: Icon(Icons.save),
@@ -86,10 +105,10 @@ class _PasswordCreatePageState extends State<PasswordCreatePage> {
                 });
               },
               onTapOutside: (PointerDownEvent event) async {
-                await Future.delayed(Duration(seconds: 3));
                 setState(() {
                   isObscurePassword = true;
                 });
+                await Future.delayed(Duration(seconds: 3));
               },
             ),
           ),
