@@ -5,6 +5,8 @@ Future<void> showSnackbar({required BuildContext context, required Widget conten
     SnackBar(
       content: content,
       behavior: SnackBarBehavior.floating,
+      backgroundColor: Theme.of(context).primaryColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       duration: duration,
     ),
   );

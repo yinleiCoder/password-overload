@@ -8,7 +8,7 @@ class CountdownCircle extends StatefulWidget {
   const CountdownCircle({super.key, required this.countdownDuration, required this.circleRadius, required this.color, this.onComplete});
 
   final Duration countdownDuration;
-  final int circleRadius;
+  final double circleRadius;
   final Color color;
   final VoidCallback? onComplete;
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:layout/layout.dart';
+import 'package:password_overload/common/values/values.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:password_overload/common/entity/entity.dart';
-import 'package:provider/provider.dart';
 import 'package:password_overload/global.dart';
 import 'package:password_overload/common/state/state.dart';
 import 'package:password_overload/common/widgets/widgets.dart';
@@ -34,11 +36,11 @@ class _PasswordPageState extends State<PasswordPage> {
   Widget buildCopyrightFooter() {
     TextStyle copyrightStyle = TextStyle(
       color: Colors.grey,
-      fontSize: 10.sp,
+      fontSize: AppResponsive.secondryFontSize.resolve(context).sp,
     );
-
+    double padding = context.layout.value(xs: 4.w, md: 10.w);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.all(padding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +49,7 @@ class _PasswordPageState extends State<PasswordPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Copyright', style: copyrightStyle,),
-              Icon(Icons.copyright, size: 10.sp, color: Colors.grey,),
+              Icon(Icons.copyright, size: AppResponsive.secondryFontSize.resolve(context).sp, color: Colors.grey,),
               Text('2025.', style: copyrightStyle,),
               Text('All rights reserved.', style: copyrightStyle,),
             ],
@@ -60,12 +62,11 @@ class _PasswordPageState extends State<PasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    return Layout(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Center(
             child: Column(
               children: [
                 CustomSearchBar(
@@ -87,11 +88,11 @@ class _PasswordPageState extends State<PasswordPage> {
                               children: [
                                 Text('数据库中无数据', style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 18.sp,
+                                  fontSize: AppResponsive.primaryFontSize.resolve(context).sp,
                                   color: Theme.of(context).primaryColor,
                                 ),),
                                 Text('请点击屏幕右下方的按钮新建数据', style: TextStyle(
-                                  fontSize: 12.sp,
+                                  fontSize: AppResponsive.secondryFontSize.resolve(context).sp,
                                   color: Colors.grey,
                                 ),),
                               ],
@@ -119,15 +120,16 @@ class _PasswordPageState extends State<PasswordPage> {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          bool? canRefresh = await context.push<bool>('/application/passwords/create');
-          if(canRefresh ?? false) {
-            refreshDataFromDB();
-          }
-        },
-        child: Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+          tooltip: '创建新密码',
+          onPressed: () async {
+            bool? canRefresh = await context.push<bool>('/application/passwords/create');
+            if(canRefresh ?? false) {
+              refreshDataFromDB();
+            }
+          },
+          child: Icon(Icons.edit),
+        ),
       ),
     );
   }

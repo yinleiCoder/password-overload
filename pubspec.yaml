@@ -54,14 +54,27 @@ dependencies:
   # https://pub.dev/packages/path_provider
   path_provider: ^2.1.5
   # https://pub.dev/packages/crypto
-  crypto: ^3.0.6
+  # crypto: ^3.0.6
+  # https://pub.dev/packages/encrypt
+  encrypt: ^5.0.3
+  # https://pub.dev/packages/flutter_secure_storage
+  flutter_secure_storage: ^9.2.4
   # https://pub.dev/packages/cached_network_image
   cached_network_image: ^3.4.1
-  # https://pub.dev/packages/local_auth
+  # https://pub.dev/packages/clipboard
+  clipboard: ^2.0.2
+  # https://pub.dev/packages/password_strength
+  password_strength: ^0.2.0
+  # https://pub.dev/packages/url_launcher
+  url_launcher: ^6.3.2
+  # https://pub.dev/packages/layout
+  layout: ^1.0.5
 
   # https://docs.flutter.dev/data-and-backend/serialization/json#serializing-json-using-code-generation-libraries
   # json_annotation: ^4.9.0
 
+  # https://pub.dev/packages/local_auth
+  # https://pub.dev/packages/home_widget
   # https://pub.dev/packages/pinput
   # https://pub.dev/packages/animations
   # https://pub.dev/packages/permission_handler
@@ -72,7 +85,6 @@ dependencies:
   # https://pub.dev/packages/share_plus
   # https://pub.dev/packages/logger
   # https://pub.dev/packages/image_picker
-
 
 dev_dependencies:
   flutter_test:

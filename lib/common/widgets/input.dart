@@ -29,33 +29,26 @@ class _CustomInputState extends State<CustomInput> {
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.all(Radius.circular(8.r)),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      child: Row(
-        children: [
-          Expanded(
-            child: TapRegion(
-              onTapOutside: widget.onTapOutside,
-              onTapInside: widget.onTapInside,
-              child: TextField(
-                controller: widget.textEditingController,
-                onSubmitted: widget.onSubmitted,
-                onEditingComplete: widget.onEditingComplete,
-                onChanged: widget.onChanged,
-                decoration: InputDecoration(
-                  hintText: widget.hintText,
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-                ),
-                autocorrect: false,
-                obscureText: widget.obscureText ?? false,
-                enableSuggestions: false,
-                maxLength: widget.maxLength,
-                maxLines: widget.maxLines,
-              ),
-            ),
+      child: TapRegion(
+        onTapOutside: widget.onTapOutside,
+        onTapInside: widget.onTapInside,
+        child: TextField(
+          controller: widget.textEditingController,
+          onSubmitted: widget.onSubmitted,
+          onEditingComplete: widget.onEditingComplete,
+          onChanged: widget.onChanged,
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            border: InputBorder.none,
+            suffix: widget.trailing,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           ),
-          if(widget.trailing != null)widget.trailing!
-        ],
+          autocorrect: false,
+          obscureText: widget.obscureText ?? false,
+          enableSuggestions: false,
+          maxLength: widget.maxLength,
+          maxLines: widget.maxLines,
+        ),
       ),
     );
   }
